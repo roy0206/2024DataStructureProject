@@ -5,21 +5,30 @@ using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
+public enum InventoryType { Stack, Queue}
+
 public class Inventory : MonoBehaviour
 {
     [SerializeField] internal int size;
-    internal List<ItemBase> items;
+    [SerializeField] internal List<ItemBase> items;
+    [SerializeField] internal InventoryType type;
     internal int currentIndex = 0;
     InventoryTypeBase inventory;
+    
 
 
     private void Awake()
     {
-        inventory = new InventoryStack(this);
+        
         items = new List<ItemBase>();
         for(int i = 0; i < size; i++)
         {
             items.Add(null);
+        }
+        switch (type)
+        {
+            case InventoryType.Stack: inventory = new InventoryStack(this); break;
+            case InventoryType.Queue: inventory = new InventoryQueue(this); break;
         }
     }
 
@@ -90,8 +99,8 @@ public abstract class InventoryTypeBase
         int index = GetAquisitionIndex();
         if (index >= 0)
         {
-            inventory.currentIndex = index;
             inventory.items[index] = item;
+            inventory.currentIndex = GetCurrentIndex();
             return true;
         }
         return false;
@@ -138,6 +147,57 @@ public class InventoryStack : InventoryTypeBase
         {
             if (inventory.items[i] == null) return i -1;
         }
+        return inventory.items.Count -1;
+    }
+}
+
+public class InventoryQueue : InventoryTypeBase
+{
+    public InventoryQueue(Inventory inventory) : base(inventory, InventoryStartPoint.Front)
+    {
+
+    }
+
+    public override void OnMoveInventoryLeft()
+    {
+
+    }
+
+    public override void OnMoveInventoryRight()
+    {
+
+    }
+
+    public override void OnMoveInventoryToSpecificIndex(int index)
+    {
+
+    }
+
+    public override int GetAquisitionIndex()
+    {
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            if (inventory.items[i] == null) return i;
+        }
         return -1;
+    }
+
+    public override int GetCurrentIndex()
+    {
+        int count = 0;
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            if (inventory.items[i] == null)
+            {
+                count++;
+                inventory.items.RemoveAt(i);
+                i--;
+            }
+        }
+        for (int i = 0; i < count; i++)
+        {
+            inventory.items.Add(null);
+        }
+        return 0;
     }
 }

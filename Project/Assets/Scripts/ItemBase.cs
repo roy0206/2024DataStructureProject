@@ -9,6 +9,7 @@ public abstract class ItemBase : MonoBehaviour
 {
     [SerializeField] protected ItemType type;
     [SerializeField] protected TMP_Text pickupMessage;  // 텍스트 메시지를 연결할 변수
+    [SerializeField] protected SpriteRenderer sprite;  // 텍스트 메시지를 연결할 변수
     protected PlayerController playerController;
     protected bool isPlayerNearby = false;
 
@@ -28,6 +29,7 @@ public abstract class ItemBase : MonoBehaviour
         {
             PickupItem();
         }
+        sprite.transform.rotation *= Quaternion.Euler(0, 45 * Time.deltaTime, 0) ;
     }
     public abstract bool OnItemUsed();
 

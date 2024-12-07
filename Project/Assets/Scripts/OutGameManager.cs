@@ -15,6 +15,10 @@ public class LevelData
 
 public class OutGameManager : MonoBehaviour, ISavable
 {
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
     public List<LevelData> levels;
 
     public void LoadData(Database data)
