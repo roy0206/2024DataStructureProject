@@ -3601,6 +3601,14 @@ MonoBehaviour:
   size: 5
   items: []
   type: 0
+  slot:
+  - {fileID: 492765201}
+  - {fileID: 2079959921}
+  - {fileID: 1354997843}
+  - {fileID: 458016007}
+  - {fileID: 1450524466}
+  - {fileID: 1720652021}
+  - {fileID: 172188968}
 --- !u!4 &1818156060
 Transform:
   m_ObjectHideFlags: 0
