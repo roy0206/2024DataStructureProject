@@ -13,6 +13,10 @@ public abstract class ItemBase : MonoBehaviour
     protected PlayerController playerController;
     protected bool isPlayerNearby = false;
 
+    /// <summary>
+    //public Sprite spr;
+    /// </summary>
+
     protected virtual void Start()
     {
         playerController = FindAnyObjectByType<PlayerController>();
@@ -25,7 +29,7 @@ public abstract class ItemBase : MonoBehaviour
     protected virtual void Update()
     {
         // 플레이어가 근처에 있을 때 F 키를 눌러 아이템을 획득
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.F))
+        if (isPlayerNearby=true && Input.GetKeyDown(KeyCode.F))
         {
             PickupItem();
         }
