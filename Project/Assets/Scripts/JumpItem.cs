@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class JumpItem : ItemBase
 {
-    public Sprite spr;
     protected override void Start()
     {
         base.Start();
-        spr = Resources.Load<Sprite>("Assets/MYR/Resource/jump.png");
+        itemImage = Resources.Load<Sprite>("dash");
 
     }
     protected override void Update()

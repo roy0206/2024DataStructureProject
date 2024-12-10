@@ -13,9 +13,7 @@ public abstract class ItemBase : MonoBehaviour
     protected PlayerController playerController;
     protected bool isPlayerNearby = false;
 
-    /// <summary>
-    //public Sprite spr;
-    /// </summary>
+    public Sprite itemImage;
 
     protected virtual void Start()
     {

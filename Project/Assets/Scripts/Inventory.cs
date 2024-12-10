@@ -15,12 +15,7 @@ public class Inventory : MonoBehaviour
     internal int currentIndex = 0;
     InventoryTypeBase inventory;
 
-    /// <summary>
-    private Sprite spr;
-    public GameObject[] slotItem = new GameObject[7];
-
-    /// </summary>
-
+    List<Image> slotItem;
 
 
     private void Awake()
@@ -34,6 +29,16 @@ public class Inventory : MonoBehaviour
         {
             case InventoryType.Stack: inventory = new InventoryStack(this); break;
             case InventoryType.Queue: inventory = new InventoryQueue(this); break;
+        }
+        slotItem = new List<Image>();
+
+    }
+    private void Start()
+    {
+        Transform frame = GameObject.FindWithTag("Bag").transform;
+        for (int i = 0; i < 5; i++)
+        {
+            slotItem.Add(frame.Find((i + 1).ToString()).Find("Slot Item").GetComponent<Image>());
         }
     }
 
@@ -52,7 +57,7 @@ public class Inventory : MonoBehaviour
             }
         }
         if (i != -1) inventory.OnMoveInventoryToSpecificIndex(i);
-        
+        UpdateUi();
     }
 
     public bool AddItem(ItemBase item)
@@ -68,6 +73,15 @@ public class Inventory : MonoBehaviour
 
     void UpdateUi()
     {
+        for(int i = 0; i < items.Count; i++)
+        {
+            if (items[i] != null) slotItem[i].sprite = items[i].itemImage;
+            else slotItem[i].sprite = null;
+            
+            if(i == currentIndex) slotItem[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 0, 1);
+            else slotItem[i].transform.parent.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+
 
     }
 

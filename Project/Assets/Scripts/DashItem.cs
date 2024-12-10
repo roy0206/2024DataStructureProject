@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class DashItem : ItemBase
 {
-    private Sprite spr;
     protected override void Start()
     {
-        spr = Resources.Load<Sprite>("Assets/MYR/Resource/dash.png");
+        itemImage = Resources.Load<Sprite>("jump");
         base.Start();
     }
     protected override void Update()

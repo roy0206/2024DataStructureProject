@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float dashTime = 0;
     public bool isDash = false;
     public Vector2 tmpDir = Vector2.right;  // 기본 방향은 오른쪽
-    public float maxDashTime = 0.5f;  // 최대 대시 시간 설정
+    public float maxDashTime = 0.01f;  // 최대 대시 시간 설정
 
     [HideInInspector] public Rigidbody2D rigidbody2D;
     [HideInInspector] public Animator animator;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         dashTime += Time.deltaTime;
-        HandleJumping();  // 점프 상태 처리
+/*        HandleJumping();  // 점프 상태 처리*/
     }
 
     private void Move()
@@ -82,11 +82,19 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isJump = false;
+            animator.SetBool("Jump", false);
+        }
+    }
 
-    private void HandleJumping()
+/*    private void HandleJumping()
     {
         // 낙하 중일 때만 바닥 감지
-        if (rigidbody2D.velocity.y < 0)  // 플레이어가 떨어질 때 (y 속도가 음수일 때)
+        if (rigidbody2D.velocity.y <= 0)  // 플레이어가 떨어질 때 (y 속도가 음수일 때)
         {
             Debug.DrawRay(rigidbody2D.position, Vector2.down, new Color(0, 1, 0)); // Ray를 그리기 (디버그용)
 
@@ -107,5 +115,5 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }
