@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-
+using UnityEngine.UI;
 public enum InventoryType { Stack, Queue}
 
 public class Inventory : MonoBehaviour
@@ -14,12 +14,17 @@ public class Inventory : MonoBehaviour
     [SerializeField] internal InventoryType type;
     internal int currentIndex = 0;
     InventoryTypeBase inventory;
-    
+
+    /// <summary>
+    private Sprite spr;
+    public GameObject[] slotItem = new GameObject[7];
+
+    /// </summary>
+
 
 
     private void Awake()
     {
-        
         items = new List<ItemBase>();
         for(int i = 0; i < size; i++)
         {
@@ -53,6 +58,7 @@ public class Inventory : MonoBehaviour
     public bool AddItem(ItemBase item)
     {
         return inventory.OnItemAdded(item);
+
     }
 
     public void OnIndexChanged()
@@ -64,6 +70,7 @@ public class Inventory : MonoBehaviour
     {
 
     }
+
 }
 
 
