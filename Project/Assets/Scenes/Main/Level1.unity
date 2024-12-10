@@ -3601,14 +3601,14 @@ MonoBehaviour:
   size: 5
   items: []
   type: 0
-  slot:
-  - {fileID: 492765201}
-  - {fileID: 2079959921}
-  - {fileID: 1354997843}
-  - {fileID: 458016007}
-  - {fileID: 1450524466}
-  - {fileID: 1720652021}
-  - {fileID: 172188968}
+  slotItem:
+  - {fileID: 1356067680}
+  - {fileID: 106963527}
+  - {fileID: 800101944}
+  - {fileID: 98203121}
+  - {fileID: 1192130782}
+  - {fileID: 442053809}
+  - {fileID: 134554798}
 --- !u!4 &1818156060
 Transform:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     /// <summary>
     private Sprite spr;
-    public GameObject[] slot = new GameObject[7];
+    public GameObject[] slotItem = new GameObject[7];
 
     /// </summary>
 
